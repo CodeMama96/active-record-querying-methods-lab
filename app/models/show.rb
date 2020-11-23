@@ -5,8 +5,7 @@ class Show < ActiveRecord::Base
     end
 
     def self.most_popular_show
-        self.highest_rating.maximum#use this as helper method
-      #why is it :rating, :name, etc?
+        Show.where('rating = ?', self.highest_rating).first
     end
 
     def self.lowest_rating
@@ -14,7 +13,7 @@ class Show < ActiveRecord::Base
     end
 
     def self.least_popular_show
-        Show.minimum(:rating)
+        Show.where('rating = ?', self.lowest_rating).first
         
     end
 
